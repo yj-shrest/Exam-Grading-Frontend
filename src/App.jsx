@@ -1,15 +1,17 @@
 import { useState } from 'react'
 import Home from './Home'
-import Enter from './Enter'
-import Question from './Question';
-import Quiz from './Quiz'
+import Mcq from './Mcq';
+import SubjectiveGrading from './SubjectiveGrading';
+import AddDB from './AddDB';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/KBC' element={<Question/>} />
-        <Route path='/KBC/home' element={<Quiz/>} />
+        <Route path='/' element={<Home/>} />
+        <Route path='/mcq'element={<Mcq/>}/>
+        <Route path='/subjective'element={<SubjectiveGrading/>}/>
+        <Route path='/addDB'element={<AddDB/>}/>
       </Routes>
     </Router>
     
