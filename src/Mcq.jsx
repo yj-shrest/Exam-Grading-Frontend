@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import MasterLayout from './MasterLayout';
 
 const MCQGrading = () => {
   const [questionImage, setQuestionImage] = useState(null);
@@ -76,6 +77,8 @@ const MCQGrading = () => {
   };
 
   return (
+    <MasterLayout>
+
     <div className="max-w-6xl mx-auto p-6">
       <div className="bg-white rounded-lg shadow-lg p-6">
         <h2 className="text-2xl font-bold text-gray-900 mb-6">MCQ Grading</h2>
@@ -195,6 +198,7 @@ const MCQGrading = () => {
         )}
       </div>
     </div>
+    </MasterLayout>
   );
 };
 

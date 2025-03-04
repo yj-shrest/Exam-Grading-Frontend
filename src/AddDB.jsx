@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import MasterLayout from './MasterLayout';
 
 const AddDB = () => {
   const [databaseOption, setDatabaseOption] = useState('existing');
@@ -149,139 +150,140 @@ const AddDB = () => {
 
 
   return (
-    <div className="max-w-4xl mx-auto p-6">
-      <div className="bg-white rounded-lg shadow-lg p-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-6">Reference Database</h2>
-        
-        {loading ? (
-          <div className="text-center py-4">
-            <p>Loading databases...</p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-6">
-            {/* Database Selection Section */}
-            <div className="bg-gray-50 p-4 rounded-lg">              
-              <div className="space-y-4">
-                <div className="flex items-center space-x-4">
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      value="existing"
-                      checked={databaseOption === 'existing'}
-                      onChange={handleDatabaseOptionChange}
-                      className="form-radio h-4 w-4 text-blue-600"
-                    />
-                    <span className="ml-2">Choose from existing database</span>
-                  </label>
-                  
-                  <label className="inline-flex items-center">
-                    <input
-                      type="radio"
-                      value="new"
-                      checked={databaseOption === 'new'}
-                      onChange={handleDatabaseOptionChange}
-                      className="form-radio h-4 w-4 text-blue-600"
-                    />
-                    <span className="ml-2">Add new database</span>
-                  </label>
-                </div>
+    <MasterLayout><div className="max-w-4xl mx-auto p-6">
+    <div className="bg-white rounded-lg shadow-lg p-6">
+      <h2 className="text-2xl font-bold text-gray-900 mb-6">Reference Database</h2>
+      
+      {loading ? (
+        <div className="text-center py-4">
+          <p>Loading databases...</p>
+        </div>
+      ) : (
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* Database Selection Section */}
+          <div className="bg-gray-50 p-4 rounded-lg">              
+            <div className="space-y-4">
+              <div className="flex items-center space-x-4">
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    value="existing"
+                    checked={databaseOption === 'existing'}
+                    onChange={handleDatabaseOptionChange}
+                    className="form-radio h-4 w-4 text-blue-600"
+                  />
+                  <span className="ml-2">Choose from existing database</span>
+                </label>
                 
-                {databaseOption === 'existing' && (
-                  <div className="mt-4">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Select Reference Database
-                    </label>
-                    <select
-                      value={selectedDatabase}
-                      defaultValue=""
-                      onChange={handleDatabaseSelection}
-                      className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
-                    >
-                      <option value="" disabled>Select a database</option>
-                      {databaseList.length === 0 ? (
-                        <option value="">No databases available</option>
-                      ) : (
-                        databaseList.map(db => (
-                          <option className='text-black' key={db.id} value={db.id}>
-                            {db}
-                          </option>
-                        ))
-                      )}
-                    </select>
-                  </div>
-                )}
-                
-                {databaseOption === 'new' && (
-                  <div className="mt-4 space-y-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Database Name
-                      </label>
-                      <input
-                        type="text"
-                        value={newDatabaseName}
-                        onChange={handleDatabaseNameChange}
-                        placeholder="Enter a name for the new database"
-                        className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                      />
-                    </div>
-                    
-                    <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Upload PDF Reference File
-                      </label>
-                      <input
-                        type="file"
-                        accept=".pdf"
-                        onChange={handleDatabaseFileChange}
-                        className="block w-full text-sm text-gray-500
-                          file:mr-4 file:py-2 file:px-4
-                          file:rounded-md file:border-0
-                          file:text-sm file:font-semibold
-                          file:bg-blue-50 file:text-blue-700
-                          hover:file:bg-blue-100"
-                      />
-                      <p className="mt-1 text-sm text-gray-500">
-                        Upload a PDF file containing reference material (textbook, notes, etc.)
-                      </p>
-                    </div>
-                  </div>
-                )}
+                <label className="inline-flex items-center">
+                  <input
+                    type="radio"
+                    value="new"
+                    checked={databaseOption === 'new'}
+                    onChange={handleDatabaseOptionChange}
+                    className="form-radio h-4 w-4 text-blue-600"
+                  />
+                  <span className="ml-2">Add new database</span>
+                </label>
               </div>
+              
+              {databaseOption === 'existing' && (
+                <div className="mt-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Select Reference Database
+                  </label>
+                  <select
+                    value={selectedDatabase}
+                    defaultValue=""
+                    onChange={handleDatabaseSelection}
+                    className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm rounded-md"
+                  >
+                    <option value="" disabled>Select a database</option>
+                    {databaseList.length === 0 ? (
+                      <option value="">No databases available</option>
+                    ) : (
+                      databaseList.map(db => (
+                        <option className='text-black' key={db.id} value={db.id}>
+                          {db}
+                        </option>
+                      ))
+                    )}
+                  </select>
+                </div>
+              )}
+              
+              {databaseOption === 'new' && (
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Database Name
+                    </label>
+                    <input
+                      type="text"
+                      value={newDatabaseName}
+                      onChange={handleDatabaseNameChange}
+                      placeholder="Enter a name for the new database"
+                      className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                      Upload PDF Reference File
+                    </label>
+                    <input
+                      type="file"
+                      accept=".pdf"
+                      onChange={handleDatabaseFileChange}
+                      className="block w-full text-sm text-gray-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-md file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-blue-50 file:text-blue-700
+                        hover:file:bg-blue-100"
+                    />
+                    <p className="mt-1 text-sm text-gray-500">
+                      Upload a PDF file containing reference material (textbook, notes, etc.)
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
-            <div>
-              <button
-                type="submit"
-                disabled={submitting}
-                className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white 
-                  ${submitting ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
-              >
-                {submitting ? 'Adding Database' : 'Next'}
-              </button>
-            </div>
-          </form>
-        )}
-        {submitting && 
-        (
-            <div className="w-[100%] bg-gray-200 rounded-full h-10 mt-4">
-            <div
-            className="bg-blue-600 h-10 rounded-full"
-            style={{ width: `${(progress / totalPages) * 100}%` }}
-            >
-            </div>
-            </div>
-        )}
-
-        {/* Error Message */}
-        {error && (
-          <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
-            <p className="text-red-600">{error}</p>
           </div>
-        )}
+          <div>
+            <button
+              type="submit"
+              disabled={submitting}
+              className={`w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white 
+                ${submitting ? 'bg-blue-300 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'}`}
+            >
+              {submitting ? 'Adding Database' : 'Next'}
+            </button>
+          </div>
+        </form>
+      )}
+      {submitting && 
+      (
+          <div className="w-[100%] bg-gray-200 rounded-full h-10 mt-4">
+          <div
+          className="bg-blue-600 h-10 rounded-full"
+          style={{ width: `${(progress / totalPages) * 100}%` }}
+          >
+          </div>
+          </div>
+      )}
 
-        {/* Result Display */}
-      </div>
+      {/* Error Message */}
+      {error && (
+        <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-md">
+          <p className="text-red-600">{error}</p>
+        </div>
+      )}
+
+      {/* Result Display */}
     </div>
+  </div></MasterLayout>
+    
   );
 };
 

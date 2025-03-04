@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom';
+import MasterLayout from './MasterLayout';
 const SubjectiveGrading = () => {
     const location = useLocation();
     const {databaseId} = location.state;
@@ -47,7 +48,7 @@ const SubjectiveGrading = () => {
         }
     }
   return (
-    <div>
+    <MasterLayout>
        {/* Question Image Upload */}
        <div className="max-w-4xl mx-auto p-6 mt-4">
         <div className='bg-white rounded-lg shadow-lg p-6'>
@@ -102,7 +103,7 @@ const SubjectiveGrading = () => {
           </div>)}
             </div>
     </div>
-    </div>
+    </MasterLayout>
 
   )
 }
